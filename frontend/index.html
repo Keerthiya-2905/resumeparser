@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume Enhancer</title>
+</head>
+<body>
+    <h1>Upload Your Resume</h1>
+
+    <form id="uploadForm" enctype="multipart/form-data">
+        <label for="resume">Resume (PDF):</label>
+        <input type="file" id="resume" name="resume" accept="application/pdf" required>
+        <br><br>
+
+        <label for="jobDescription">Job Description:</label>
+        <textarea id="jobDescription" name="jobDescription" rows="4" cols="50" required></textarea>
+        <br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Parsed Resume Data</h2>
+    <pre id="parsedData"></pre>
+
+    <script>
+        const form = document.getElementById('uploadForm');
+        const parsedDataElement = document.getElementById('parsedData');
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData,
+                });
+                const data = await response.json();
+                parsedDataElement.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to parse the resume.');
+            }
+        });
+    </script>
+</body>
+</html>
