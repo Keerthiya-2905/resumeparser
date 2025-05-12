@@ -1,0 +1,17 @@
+{
+    "name": "resume-enhancer",
+    "version": "1.0.0",
+    "description": "A simple resume parser and enhancer",
+    "main": "backend/index.js",
+    "scripts": {
+      "start": "node backend/index.js"
+    },
+    "keywords": [],
+    "author": "Your Name",
+    "license": "ISC",
+    "dependencies": {
+      "express": "^4.17.1",
+      "express-fileupload": "^1.4.0",
+      "pdf-parse": "^1.1.1"
+    }
+  }
